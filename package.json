@@ -1,0 +1,26 @@
+{
+  "name": "react-calculator",
+  "version": "1.0.0",
+  "description": "A basic order calculator component for ReactJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/htmelvis/react-calculator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/htmelvis/react-calculator/issues"
+  },
+  "homepage": "https://github.com/htmelvis/react-calculator#readme",
+  "devDependencies": {
+    "jquery": "^2.1.4",
+    "jsx-loader": "^0.13.2",
+    "lodash": "^3.10.1",
+    "react": "^0.13.3",
+    "webpack": "^1.12.1"
+  }
+}
