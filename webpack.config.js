@@ -7,7 +7,14 @@ module.exports = {
   },
   module: {
     loaders: [
-      {test: /\.js$/, loader: 'jsx-loader'}
+      {test: /\.js$/, loader: 'jsx-loader'},
+      {test: /\.scss$/, loader: 'style!css!sass'}
     ]
+  },
+  devServer: {
+    contentBase: "./public",
+    noInfo: true, //  --no-info option
+    hot: true,
+    inline: true
   }
 };
