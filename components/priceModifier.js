@@ -3,7 +3,7 @@ module.exports = React.createClass({
     render: function(){
       return (
           <div className="form-group">
-            <label for="price-mod">Price Modifier Selections:</label>
+            <label for="price-mod">Modifying Price Selections:</label>
             <select name="price-mod" className="price-mod" id="price-mod">
               <option value="Choose Modifier">Choose a modifier</option>
               <option value="Choose Modifier">Product Variation 1</option>
