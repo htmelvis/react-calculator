@@ -1,5 +1,5 @@
-# react-calculator
-A basic order calculator component for ReactJS
+# React-calculator
+A basic order calculator component for ReactJS & Foxy Cart
 - Install all deps by running ```npm install```
 - To serve the app use ```npm start``` and navigate to 127.0.0.1:8080/webpack-dev-server/
 
