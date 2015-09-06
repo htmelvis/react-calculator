@@ -13,4 +13,5 @@ A basic order calculator component for ReactJS & Foxy Cart
 - Definitive Calculator Style
 - Processing Functionality (POST, GET and AJAX Request Details)
 - Calculation Functionality (including tier pricing model)
+- Provide Data for the PriceModifier Select box
 - Hand off to the FC server
