@@ -6,13 +6,31 @@ module.exports = React.createClass({
   //    return new Error('Validation failed!' + props);
   //  }
   //},
-  //propType: this.validateInput(),
+  getDefaultProps: function(){
+    //number
+  },
+  propTypes: {
+    //number: React.propTypes.number.isRequired
+  },
+  getInitialState: function(){
+    return {
+      //inputVal: 'Please fill me out',
+      id: 0
+    }
+  },
+  update: function(e){
+    this.setState({
+      //inputVal: e.target.value
+    })
+  },
   render: function(){
     return (
-        <div>
+        <div className="form-group">
           <label className="control-label">{this.props.label}</label>
-          <input type="text"
-                 className="calculator-length" />
+          <input type={this.props.inputType}
+                 className="calc-input"
+                 name={this.props.name}
+                 onChange={this.update} />
         </div>
     );
   }

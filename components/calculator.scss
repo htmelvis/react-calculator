@@ -1,4 +1,33 @@
+@import '../style/globals.scss';
+
 form.calculator{
-  border: 3px solid #eee;
+  border: .2rem solid #ccc;
   padding: 1rem;
+  background: #eee;
+  .form-group{
+    margin-bottom: .45rem;
+  }
+  label{
+    display: block;
+    padding: .4rem 0;
+  }
+  .calc-input{
+    width: 96%;
+    height: 30px;
+    padding-left: .4rem;
+    display:block;
+    font-size: 1.1rem;
+  }
+  .calc-submit{
+    display:block;
+    padding: .45rem 1rem;
+    color: white;
+    background: blue;
+    border-radius: $borderRadius;
+  }
+  select{
+    width: 96%;
+    padding: .45rem;
+
+  }
 }
