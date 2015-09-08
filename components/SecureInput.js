@@ -22,7 +22,8 @@ module.exports = React.createClass({
     }
   },
   checkInput: function(e){
-    console.log("You left the inputt", e.target.value);
+    console.log("You left the input", e.target);
+
   },
   update: function(e){
     console.log(e.target.value);
@@ -37,7 +38,8 @@ module.exports = React.createClass({
           <input type={this.props.inputType}
                  className="calc-input"
                  name={this.props.name}
-                 onChange={this.update} />
+                 onChange={this.update}
+                 onBlur={this.checkInput} />
         </div>
     );
   }
