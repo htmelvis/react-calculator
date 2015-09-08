@@ -10,7 +10,13 @@ A basic order calculator component for ReactJS & Foxy Cart
 
 ### Project Needs
 - Validation on Secure Inputs
+- Tooltips
 - Definitive Calculator Style
+    - Calc with features
+    - Calc with table
+    - Calc with both
+    - Calc with none.
+    - Single line Calc
 - Processing Functionality (POST, GET and AJAX Request Details)
 - Calculation Functionality (including tier pricing model)
 - Provide Data for the PriceModifier Select box
