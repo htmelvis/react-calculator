@@ -6,17 +6,11 @@ module.exports = React.createClass({
   //    return new Error('Validation failed!' + props);
   //  }
   //},
+  componentDidMount: function(){
+    console.log('secure input is now mounted');
+  },
   getDefaultProps: function(){
     //number
-  },
-  getDataFromInput: function(){
-    var data = {
-      width: this.refs.Width.getDOMNode().value,
-      length: this.refs.Length.getDOMNode().value,
-      //TODO: Commit to changing the way price mods are set in PriceMod File
-      // priceModifier: this.refs.productPriceMod.getDOMNode().selected
-    };
-    return data;
   },
   propTypes: {
     //number: React.propTypes.number.isRequired
@@ -27,18 +21,20 @@ module.exports = React.createClass({
       id: 0
     }
   },
+  checkInput: function(e){
+    console.log("You left the inputt", e.target.value);
+  },
   update: function(e){
+    console.log(e.target.value);
     this.setState({
       //inputVal: e.target.value
-    })
-    var data = this.getDataFromInput();
-    console.log(data);
+    });
   },
   render: function(){
     return (
         <div className="form-group">
           <label className="control-label">{this.props.label}:</label>
-          <input ref={this.props.name} type={this.props.inputType}
+          <input type={this.props.inputType}
                  className="calc-input"
                  name={this.props.name}
                  onChange={this.update} />
