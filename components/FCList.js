@@ -8,10 +8,10 @@ module.exports = React.createClass({
   render: function(){
     return (
         <div>
-          <FCInput name="name" />
-          <FCInput name="price" />
-          <FCInput name="code" />
-          <FCInput name="image" />
+          <FCInput FCProd="name"/>
+          <FCInput FCProd="price"/>
+          <FCInput FCProd="code"/>
+          <FCInput FCProd="image"/>
         </div>
     );
   }

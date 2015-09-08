@@ -15,33 +15,19 @@ require('./calculator.scss');
 
 //This will house the pieces of the calculator and also let it be
 module.exports = React.createClass({
-  //getInitialState: function(){
-  //  //return {
-  //  //  errors: {},
-  //  //  name: '',
-  //  //  price: '',
-  //  //  code: '',
-  //  //  image: ''
-  //  //}
-  //},
-  //getDataFromInput: function(){
-  //  //var data = {
-  //  //  width: this.refs.Width.getDOMNode().value,
-  //  //  length: this.refs.Length.getDOMNode().value
-  //  //  //TODO: Commit to changing the way price mods are set in PriceMod File
-  //  //  // priceModifier: this.refs.productPriceMod.getDOMNode().selected
-  //  //};
-  //  //return data;
-  //},
-  //componentDidMount: function() {
-  //  //console.log('component is now mounted');
-  //  //this.setState({
-  //  //  price: 999,
-  //  //  code: 'XYZ-CODE',
-  //  //  name: 'Some Name Product',
-  //  //  image: 'some/src/to/an/image.jpg'
-  //  //});
-  //},
+  getDefaultProps: function(){
+    return {
+      calcTitle: 'Order Calculator',
+      titleBgColor: 'transparent'
+    }
+  },
+  calcStyle: {
+    //TODO: Use radium to manage the styles of Inline
+    backgroundColor: 'red'
+  },
+  componentDidMount: function() {
+    console.log('component is now mounted');
+  },
   //processForm: function(e){
   //  //var data = this.getDataFromInput();
   //  //console.log(data);
@@ -67,7 +53,8 @@ module.exports = React.createClass({
   //},
   render: function(){
     return (
-        <form className="calculator" name="calculator"  method="post">
+        <form className="calculator" name="calculator" method="post">
+          <h3 style={this.calcStyle}>{this.props.calcTitle}</h3>
           <FCList />
           <InputList />
           <Button />
