@@ -20,14 +20,20 @@
   ],
   "inputdata": [
     {
-      "type": "select or input",
+      "inputType": "select",
       "label": "title of the input label",
-      "name": "name attr"
+      "name": "name attr",
+      "options": [
+        {"modName": "Twine Size #32", "price": 32},
+        {"modName": "Twine Size #65", "price": 23},
+        {"modName": "Twine Size #322", "price": 332}
+      ]
     },
     {
-      "type": "select or input",
+      "inputType": "input",
       "label": "title of the input label",
-      "name": "name attr"
+      "name": "name attr",
+      "options": []
     }
   ]
 }

@@ -35,7 +35,7 @@ module.exports = React.createClass({
     return (
         <div className="form-group">
           <label className="control-label">{this.props.label}:</label>
-          <input type={this.props.inputType}
+          <input type={this.props.type}
                  className="calc-input"
                  name={this.props.name}
                  onChange={this.update}
