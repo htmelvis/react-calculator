@@ -24,7 +24,8 @@ module.exports = React.createClass({
     return {
       calcTitle: 'Initial Title',
       titleBgColor: 'green',
-      fcdata: []
+      fcdata: [],
+      inputdata: []
     };
   },
   loadDataFile: function(){
@@ -36,13 +37,12 @@ module.exports = React.createClass({
           this.setState({
              calcTitle: data.calcdata.calcTitle,
              titleBgColor: data.calcdata.titleBgColor
-          })
+          });
+          this.setState({
+            inputdata: data.inputdata
+          });
         }
     }.bind(this));
-  },
-  calcStyle: {
-    //TODO: Use radium to manage the styles of Inline
-    backgroundColor: 'red'
   },
   componentDidMount: function() {
     console.log('component is now mounted');
@@ -54,7 +54,7 @@ module.exports = React.createClass({
           <h3>{this.state.calcTitle}</h3>
           <p>{this.state.titleBgColor}</p>
           <FCList data={this.state.fcdata} />
-          <InputList />
+          <InputList data={this.state.inputdata} />
           <Button />
           <LivePrice />
         </form>

@@ -10,19 +10,23 @@ var SecureInput = require('./SecureInput');
 module.exports = React.createClass({
   getInitialState: function(){
     return {
-      data: [
-        {identifier: 'Twine Size', affectPrice: 'true', selectInput: true}
-      ]
+
     }
   },
   render: function(){
+    var inputs = this.props.data.map(function(input){
+      if(input.inputType === 'input'){
+        return <SecureInput label={input.label} type="text" name={input.name}  />
+      } else if(input.inputType === 'select'){
+        return <SelectInput label={input.label} name={input.name} data={input.options} />
+      }
+    });
     return (
         <div>
-          <SelectInput identifier="Twine Size" affectPrice="true" />
-          <SecureInput ref="Length" required="true" label="Length" name="Length" inputType="text" />
-          <SecureInput ref="Width" required="true"  label="Width" name="Width" inputType="text" />
-          <SelectInput required="true" />
+          {inputs}
         </div>
     );
   }
 });
+
+
