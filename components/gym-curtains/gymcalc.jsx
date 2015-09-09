@@ -2,7 +2,7 @@ var React = require('react');
 
 module.exports = React.createClass({
   render:function(){
-    return  <form action="https://secure.usnetting.com/cart" method="POST" accept-charset="utf-8">
+    return  <form action="https://secure.usnetting.com/cart" method="POST" acceptCharset="utf-8">
       <legend>Size Calculator</legend>
       <p className="text-center">Please be sure to choose color, width, height, &amp; use the slider to choose mesh to vinyl ratio before adding your item to the cart.</p>
       <div className="form-group">

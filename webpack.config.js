@@ -5,13 +5,17 @@ var ROOT_PATH = path.resolve(__dirname);
 console.log(ROOT_PATH);
 module.exports = {
   context: ROOT_PATH,
-  entry:  [
+  entry: {
     'webpack-dev-server/client?http://127.0.0.1:8080',
     'webpack/hot/only-dev-server',
-    ROOT_PATH + '/App.js'],
+    App: ROOT_PATH + '/App.js',
+    Gym: ROOT_PATH + '/Gym.js'
+
+  },
+
   output: {
     path: ROOT_PATH + '/public',
-    filename: 'bundle.js',
+    filename: '[name].bundle.js' ,
     publicPath: 'http://127.0.0.1:8080/'
   },
   module: {
