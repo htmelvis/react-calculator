@@ -1,5 +1,5 @@
 var React = require('react');
-
+var $ = require('jquery');
 //Components that make up the Calculator
 //--List of FoxyCart Components for the Form
 var FCList = require('./FCList');
@@ -17,9 +17,28 @@ require('./calculator.scss');
 module.exports = React.createClass({
   getDefaultProps: function(){
     return {
-      calcTitle: 'Order Calculator',
-      titleBgColor: 'transparent'
+
     }
+  },
+  getInitialState: function(){
+    return {
+      calcTitle: 'Initial Title',
+      titleBgColor: 'green',
+      fcdata: []
+    };
+  },
+  loadDataFile: function(){
+    var dataFile = this.props.dataFile + '.json';
+    $.get('../data/'+dataFile, function(data){
+        console.log(data);
+        if(this.isMounted()){
+          this.setState({fcdata: data.fcdata});
+          this.setState({
+             calcTitle: data.calcdata.calcTitle,
+             titleBgColor: data.calcdata.titleBgColor
+          })
+        }
+    }.bind(this));
   },
   calcStyle: {
     //TODO: Use radium to manage the styles of Inline
@@ -27,35 +46,14 @@ module.exports = React.createClass({
   },
   componentDidMount: function() {
     console.log('component is now mounted');
+    this.loadDataFile();
   },
-  //processForm: function(e){
-  //  //var data = this.getDataFromInput();
-  //  //console.log(data);
-  //  //console.log('Hey you processed it');
-  //  //return false;
-  //},
-  //isValid: function(){
-  //  ////Grab all child nodes of form that are required
-  //  //var fields = [];
-  //  //var errors = {};
-  //  ////loop over the fields and validate them
-  //  //fields.forEach(function(field){
-  //  //  var value = trim(this.refs[field].getDOMNode().value);
-  //  //  if(!value) errors[field] = 'This Field is Required!';
-  //  //}.bind(this));
-  //  ////this.setState({errors: errors});
-  //  //var isValid = true;
-  //  //for (var error in errors ){
-  //  //  isValid = false;
-  //  //  break;
-  //  //}
-  //  //return isValid;
-  //},
   render: function(){
     return (
         <form className="calculator" name="calculator" method="post">
-          <h3 style={this.calcStyle}>{this.props.calcTitle}</h3>
-          <FCList />
+          <h3>{this.state.calcTitle}</h3>
+          <p>{this.state.titleBgColor}</p>
+          <FCList data={this.state.fcdata} />
           <InputList />
           <Button />
           <LivePrice />

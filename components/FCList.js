@@ -1,18 +1,20 @@
 var React = require('react');
-
 //--Hidden FoxyCart Fields
-var FCInput = require('./FCInput');
-
+var _ = require('lodash');
 //This will house the pieces of the calculator and also let it be
 module.exports = React.createClass({
+  getInitialState: function(){
+    return{
+      FCProd: '',
+      FCVal: ''
+    }
+  },
   render: function(){
-    return (
-        <div>
-          <FCInput FCProd="name"/>
-          <FCInput FCProd="price"/>
-          <FCInput FCProd="code"/>
-          <FCInput FCProd="image"/>
-        </div>
-    );
+    var inputs = this.props.data.map(function(input){
+      return <input type="hidden" name={input.FCProd} value={input.FCVal} />
+    });
+    return <div>
+      {inputs}
+    </div>
   }
 });

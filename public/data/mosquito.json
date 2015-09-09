@@ -1,0 +1,35 @@
+{
+  "calcdata": {
+    "calcTitle": "Order Calculator",
+    "titleBgColor": "transparent",
+    "buttonText": "Add to Cart"
+  },
+  "fcdata": [
+    {
+      "FCProd": "name",
+      "FCVal": "Mosquito Netting"
+    },
+    {
+      "FCProd": "code",
+      "FCVal": "XYZ-MOSQ"
+    },
+    {
+      "FCProd": "price",
+      "FCVal": "400"
+    }
+  ],
+  "inputdata": [
+    {
+      "type": "select or input",
+      "label": "title of the input label",
+      "name": "name attr"
+    },
+    {
+      "type": "select or input",
+      "label": "title of the input label",
+      "name": "name attr"
+    }
+  ]
+}
+
+

@@ -8,6 +8,13 @@ var SecureInput = require('./SecureInput');
 
 //This will house the pieces of the calculator and also let it be
 module.exports = React.createClass({
+  getInitialState: function(){
+    return {
+      data: [
+        {identifier: 'Twine Size', affectPrice: 'true', selectInput: true}
+      ]
+    }
+  },
   render: function(){
     return (
         <div>
