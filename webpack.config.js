@@ -2,15 +2,13 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var webpack = require('webpack');
 var path = require('path');
 var ROOT_PATH = path.resolve(__dirname);
+
 console.log(ROOT_PATH);
 module.exports = {
   context: ROOT_PATH,
   entry: {
-    'webpack-dev-server/client?http://127.0.0.1:8080',
-    'webpack/hot/only-dev-server',
     App: ROOT_PATH + '/App.js',
     Gym: ROOT_PATH + '/Gym.js'
-
   },
 
   output: {
