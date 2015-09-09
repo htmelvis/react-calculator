@@ -21,43 +21,6 @@ var vinyl = $("#vinyl");
 var vinylHeight;
 
 //Set Global variables
-var gymCurtain = {
-  setColor: function (color) {
-    TweenMax.to(vinyl, .2, {fill: color});
-  },
-  setSqFtPrice: function () {
-    this.priceSqFt = (this.sqFt >= 500) ? 3.42 : 3.90;
-  },
-  calculate: function () {
-    this.currentPrice = this.priceSqFt * this.sqFt;
-  },
-  setCurtainSize: function (percentage) {
-    vinylHeight = 100 - this.percentage;
-    TweenMax.to(vinyl, .2, {
-      attr: {y: vinylHeight + "%"}
-    });
-    TweenMax.to(currentLabel, .2, {bottom: this.percentage + "%"});
-  },
-  updateValues: function () {
-    //calc % of max
-    gymCurtain.percentage = (slider.value / slider.max) * 100;
-    //Translate to y value needed for vinyl tween
-
-    this.setSqFtPrice();
-    this.calculate();
-
-    currentLabel.innerHTML = slider.value + " Feet";
-    if (!isNaN(gymCurtain.currentPrice)) {
-      finalPrice.value = gymCurtain.currentPrice;
-      livePrice.innerHTML = '$' + gymCurtain.currentPrice;
-    }
-    if (!isNaN(gymCurtain.newMax)) {
-      topLabel.innerHTML = gymCurtain.newMax + " Feet";
-    }
-    split.value = (slider.max - slider.value ) + ' feet Mesh ' + slider.value + ' feet Vinyl';
-    this.setCurtainSize(this.percentage);
-  }
-};
 
 var inputWatcher = function (input) {
   //save initial value
@@ -114,6 +77,46 @@ $('#color').change(function () {
 });
 
 module.exports  = React.createClass({
+  //What used to be gymcurtain globals
+
+
+  setColor: function (color) {
+    TweenMax.to(vinyl, .2, {fill: color});
+  },
+  setSqFtPrice: function () {
+    this.priceSqFt = (this.sqFt >= 500) ? 3.42 : 3.90;
+  },
+  calculate: function () {
+    this.currentPrice = this.priceSqFt * this.sqFt;
+  },
+  setCurtainSize: function (percentage) {
+    vinylHeight = 100 - this.percentage;
+    TweenMax.to(vinyl, .2, {
+      attr: {y: vinylHeight + "%"}
+    });
+    TweenMax.to(currentLabel, .2, {bottom: this.percentage + "%"});
+  },
+  updateValues: function () {
+    //calc % of max
+    gymCurtain.percentage = (slider.value / slider.max) * 100;
+    //Translate to y value needed for vinyl tween
+
+    this.setSqFtPrice();
+    this.calculate();
+
+    currentLabel.innerHTML = slider.value + " Feet";
+    if (!isNaN(gymCurtain.currentPrice)) {
+      finalPrice.value = gymCurtain.currentPrice;
+      livePrice.innerHTML = '$' + gymCurtain.currentPrice;
+    }
+    if (!isNaN(gymCurtain.newMax)) {
+      topLabel.innerHTML = gymCurtain.newMax + " Feet";
+    }
+    split.value = (slider.max - slider.value ) + ' feet Mesh ' + slider.value + ' feet Vinyl';
+    this.setCurtainSize(this.percentage);
+  },
+
+
   render:function(){
     return <div className="curtain-wrap">
       <div className="row">
@@ -129,10 +132,6 @@ module.exports  = React.createClass({
           </div>
         </div>
       </div>
-
-
-
       </div>
-
   }
 });
