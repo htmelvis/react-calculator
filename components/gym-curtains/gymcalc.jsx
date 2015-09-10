@@ -31,7 +31,7 @@ module.exports = React.createClass({
         </div>
         <div className="columns small-12 medium-6 large-6">
           <label className="control-label" >Height <span data-tooltip aria-haspopup="true" className="tt has-tip" href="#" title="Please specify in whole feet or decimal no fractions. See order considerations below for how to measure.">?</span></label>
-          <input className="dimensions required number" id="height" type="text" />
+          <input  id="height" className="dimensions required number"  type="text" />
         </div>
       </div>
       <div className="form-group">
