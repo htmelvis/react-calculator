@@ -1,5 +1,4 @@
 var React = require('react');
-
 module.exports = React.createClass({
   //validateInput: function(props, propName, componentName) {
   //  if (props, propName, componentName) {

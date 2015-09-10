@@ -1,5 +1,4 @@
 var React = require('react');
-
 module.exports = React.createClass({
     getInitialState: function(){
       return {
@@ -8,20 +7,21 @@ module.exports = React.createClass({
       }
     },
     buildSelectOptions: function(){
-      var values = this.props.data;
-      return values.map(function(value){
-        return <option value={value.modName}>{value.modName} - {value.price}</option>
+      var values = this.props.data.options;
+      return values.map(function(value, index){
+        if(value.price){
+          return <option price={value.price} key={index} value={value.optionVal}>{value.optionVal}</option>
+        } else {
+          return <option value={value.optionVal} key={index}>{value.optionVal}</option>
+        }
       });
-    },
-    setPrice: function(e){
-
     },
     render: function(){
       return (
           <div className="form-group">
-            <label htmlFor="price-mod">{this.props.label}:</label>
-            <select onChange={this.setPrice} name={this.props.name} className="price-mod">
-              <option>Choose a type</option>
+            <label>{this.props.label}:</label>
+            <select onChange={this.props.updatePrice} name={this.props.data.name} className="price-mod">
+              <option>{this.props.data.defaultOption}</option>
               {this.buildSelectOptions()}
             </select>
           </div>

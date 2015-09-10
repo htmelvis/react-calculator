@@ -1,4 +1,5 @@
-var React = require('react');
+var React = require('react/addons');
+// TODO: React/addons is an experimental feature but gives extended tools for React
 var $ = require('jquery');
 //Components that make up the Calculator
 //--List of FoxyCart Components for the Form
@@ -9,23 +10,20 @@ var InputList = require('./InputList');
 var LivePrice = require('./LivePrice');
 //--Button Component for the Calculator
 var Button = require('./Button');
-
 //Calculator Styles
 require('./calculator.scss');
-
 //This will house the pieces of the calculator and also let it be
 module.exports = React.createClass({
   getDefaultProps: function(){
-    return {
-
-    }
+    return {};
   },
   getInitialState: function(){
     return {
       calcTitle: 'Initial Title',
       titleBgColor: 'green',
       fcdata: [],
-      inputdata: []
+      inputdata: [],
+      currentPrice: undefined
     };
   },
   loadDataFile: function(){
@@ -46,17 +44,26 @@ module.exports = React.createClass({
   },
   componentDidMount: function() {
     console.log('component is now mounted');
+    // Load the data file that is passed in
+    // by the calculator file in the main App.js
     this.loadDataFile();
   },
+  updatePrice: function(e){
+    console.log('updated', e.target.value);
+  },
   render: function(){
+    var styles = React.addons.classSet;
+    var classes = styles({
+      'calculator': true
+    });
+    var titleStyle = { backgroundColor: this.props.titleBgColor};
     return (
-        <form className="calculator" name="calculator" method="post">
-          <h3>{this.state.calcTitle}</h3>
-          <p>{this.state.titleBgColor}</p>
+        <form className={classes} name="calculator" method="post">
+          <h3 style={titleStyle}>{this.state.calcTitle}</h3>
           <FCList data={this.state.fcdata} />
-          <InputList data={this.state.inputdata} />
+          <InputList onChange={this.updatePrice} currentPrice={this.state.currentPrice} data={this.state.inputdata} />
           <Button />
-          <LivePrice />
+          <LivePrice price={this.state.currentPrice} />
         </form>
     );
   }

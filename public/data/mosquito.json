@@ -21,19 +21,28 @@
   "inputdata": [
     {
       "inputType": "select",
-      "label": "title of the input label",
-      "name": "name attr",
+      "label": "Color",
+      "name": "color",
+      "defaultOption": "Choose a Color",
       "options": [
-        {"modName": "Twine Size #32", "price": 32},
-        {"modName": "Twine Size #65", "price": 23},
-        {"modName": "Twine Size #322", "price": 332}
+        {"optionVal": "Olive Drab Green"},
+        {"optionVal": "White"}
+      ]
+    },
+    {
+      "inputType": "select",
+      "label": "Mosquito Net Width",
+      "name": "Net Width",
+      "defaultOption": "Choose Net Width",
+      "options": [
+        {"optionVal": "162 Inches Wide", "price": 6.99},
+        {"optionVal": "81 Inches Wide", "price": 4.53}
       ]
     },
     {
       "inputType": "input",
-      "label": "title of the input label",
-      "name": "name attr",
-      "options": []
+      "label": "Length",
+      "name": "Length"
     }
   ]
 }
