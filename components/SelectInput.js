@@ -13,7 +13,7 @@ module.exports = React.createClass({
         //if(value.price){
           //return <SpecialOption data={value} key={index} />
         //} else {
-          return <option value={value.optionVal} key={index}>{value.optionVal}</option>
+          return <option data-price={value.price} value={value.optionVal} key={index}>{value.optionVal}</option>
         //}
       });
     },
@@ -21,7 +21,7 @@ module.exports = React.createClass({
       return (
           <div className="form-group">
             <label>{this.props.label}:</label>
-            <select onChange={this.props.update} name={this.props.data.name} className="price-mod">
+            <select onChange={this.props.update} prodPrice={this.props.prodPrice} name={this.props.data.name} className="price-mod">
               <option>{this.props.data.defaultOption}</option>
               {this.buildSelectOptions()}
             </select>

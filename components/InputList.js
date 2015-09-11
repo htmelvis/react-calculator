@@ -19,7 +19,8 @@ module.exports = React.createClass({
           if (input.inputType === 'input') {
             return <SecureInput label={input.label} key={index} type="text" name={input.name} />
           } else if (input.inputType === 'select') {
-            return <SelectInput update={updatePrice}
+            return <SelectInput prodPrice={input.options[0].price}
+                                update={updatePrice}
                                 label={input.label}
                                 key={index}
                                 name={input.name}

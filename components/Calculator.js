@@ -1,6 +1,7 @@
 var React = require('react/addons');
 // TODO: React/addons is an experimental feature but gives extended tools for React
 var $ = require('jquery');
+var _ = require('lodash');
 //Components that make up the Calculator
 //--List of FoxyCart Components for the Form
 var FCList = require('./FCList');
@@ -27,10 +28,20 @@ module.exports = React.createClass({
     };
   },
   updatePrice: function(e){
-    this.setState({
-      currentPrice: 10
+    var modifiedPrice;
+    var selectOptions = e.target.options;
+    //loop over the options and see if they modify the price
+    _.map(selectOptions, function(option, index){
+      if(option.selected && option.attributes['data-price']){
+        modifiedPrice = option.attributes['data-price'].value;
+      }
     });
-    console.log('updated', e.target.value, 'the target itself', e.target);
+
+    this.setState({
+      currentPrice: modifiedPrice
+    });
+
+    console.log('updated', e.target.value, 'the target itself', e.target.options);
     console.info(e.target);
   },
   loadDataFile: function(){
