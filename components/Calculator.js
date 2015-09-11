@@ -23,20 +23,25 @@ module.exports = React.createClass({
       titleBgColor: 'green',
       fcdata: [],
       inputdata: [],
-      currentPrice: undefined
+      currentPrice: 0
     };
+  },
+  updatePrice: function(e){
+    this.setState({
+      currentPrice: 10
+    });
+    console.log('updated', e.target.value, 'the target itself', e.target);
+    console.info(e.target);
   },
   loadDataFile: function(){
     var dataFile = this.props.dataFile + '.json';
     $.get('../data/'+dataFile, function(data){
         console.log(data);
         if(this.isMounted()){
-          this.setState({fcdata: data.fcdata});
           this.setState({
-             calcTitle: data.calcdata.calcTitle,
-             titleBgColor: data.calcdata.titleBgColor
-          });
-          this.setState({
+            fcdata: data.fcdata,
+            calcTitle: data.calcdata.calcTitle,
+            titleBgColor: data.calcdata.titleBgColor,
             inputdata: data.inputdata
           });
         }
@@ -48,9 +53,7 @@ module.exports = React.createClass({
     // by the calculator file in the main App.js
     this.loadDataFile();
   },
-  updatePrice: function(e){
-    console.log('updated', e.target.value);
-  },
+
   render: function(){
     var styles = React.addons.classSet;
     var classes = styles({
@@ -61,9 +64,11 @@ module.exports = React.createClass({
         <form className={classes} name="calculator" method="post">
           <h3 style={titleStyle}>{this.state.calcTitle}</h3>
           <FCList data={this.state.fcdata} />
-          <InputList onChange={this.updatePrice} currentPrice={this.state.currentPrice} data={this.state.inputdata} />
+          <InputList update={this.updatePrice}
+                     currentPrice={this.state.currentPrice}
+                     data={this.state.inputdata} />
           <Button />
-          <LivePrice price={this.state.currentPrice} />
+          <LivePrice refs="currentPriceBox" price={this.state.currentPrice} />
         </form>
     );
   }
