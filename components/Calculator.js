@@ -27,6 +27,19 @@ module.exports = React.createClass({
       currentPrice: 0
     };
   },
+  getInputVal: function(e){
+    //Typecast input (string) into an integer
+    var inputVal = parseInt(e.target.value);
+    console.log(typeof inputVal);
+    //check if it is a number and that it is able to be rounded
+    if((typeof inputVal == "number") && Math.floor(inputVal) === inputVal){
+      this.setState({
+        currentPrice: inputVal * this.state.currentPrice
+      })
+    } else {
+      console.log('not a number do something now');
+    }
+  },
   updatePrice: function(e){
     var modifiedPrice;
     var selectOptions = e.target.options;
@@ -75,7 +88,8 @@ module.exports = React.createClass({
         <form className={classes} name="calculator" method="post">
           <h3 style={titleStyle}>{this.state.calcTitle}</h3>
           <FCList data={this.state.fcdata} />
-          <InputList update={this.updatePrice}
+          <InputList inputVal={this.getInputVal}
+                     update={this.updatePrice}
                      currentPrice={this.state.currentPrice}
                      data={this.state.inputdata} />
           <Button />

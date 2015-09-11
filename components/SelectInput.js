@@ -10,11 +10,7 @@ module.exports = React.createClass({
     buildSelectOptions: function(){
       var values = this.props.data.options;
       return values.map(function(value, index){
-        //if(value.price){
-          //return <SpecialOption data={value} key={index} />
-        //} else {
-          return <option data-price={value.price} value={value.optionVal} key={index}>{value.optionVal}</option>
-        //}
+        return <option data-price={value.price} value={value.optionVal} key={index}>{value.optionVal}</option>
       });
     },
     render: function(){
