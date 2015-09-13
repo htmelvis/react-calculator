@@ -11,7 +11,7 @@ A basic order calculator component for ReactJS & Foxy Cart
 ### Project Needs
 - Validation on Secure Inputs
 - Tooltips
-~~- Definitive Calculator Style~~
+- ~~Definitive Calculator Style~~
     - Calc with features
     - Calc with table
     - Calc with both
@@ -19,7 +19,7 @@ A basic order calculator component for ReactJS & Foxy Cart
     - Single line Calc
 - Processing Functionality (POST, GET and AJAX Request Details)
 - Calculation Functionality (including tier pricing model)
-~~- Provide Data for the PriceModifier Select box~~
+- ~~Provide Data for the PriceModifier Select box~~
 - Hand off to the FC server
 - InputList and SecureInput need to be able to validate and broadcast if they are indeed square footage or linear footage calcs
 - LivePrice needs to be filtered to only show a max of 2 dec. places
