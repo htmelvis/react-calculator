@@ -25,3 +25,6 @@ A basic order calculator component for ReactJS & Foxy Cart
 - LivePrice needs to be filtered to only show a max of 2 dec. places
 - LivePrice needs to be managed to avoid duplication of amounts
 
+### Project TODO's
+- View the TODO Doc here [react-calculator todo's](https://github.com/htmelvis/react-calculator/blob/master/TODO.md)
+
