@@ -27,12 +27,20 @@ module.exports = React.createClass({
       currentPrice: 0
     };
   },
+  calculatePrice: function(inputValue){
+    //this method should take in input value(s)
+    //Is this a linear or square foot calculation?
+    //Do we need to access the price hidden input or do we
+    //grab the price from the dropdown that is currently set
+  },
   getInputVal: function(e){
     //Typecast input (string) into an integer
     var inputVal = parseInt(e.target.value);
     console.log(typeof inputVal);
     //check if it is a number and that it is able to be rounded
     if((typeof inputVal == "number") && Math.floor(inputVal) === inputVal){
+      //this function shouldn't update the currentPrice explicitly but run an external method that
+      //calcs and sets the price
       this.setState({
         currentPrice: inputVal * this.state.currentPrice
       })
@@ -44,12 +52,16 @@ module.exports = React.createClass({
     var modifiedPrice;
     var selectOptions = e.target.options;
     //loop over the options and see if they modify the price
+    //We need to change the price but start from the initial modifier that was set from the
+    //drop down or else use the hidden price value from the FCInput Data
+
     _.map(selectOptions, function(option, index){
       if(option.selected && option.attributes['data-price']){
         modifiedPrice = option.attributes['data-price'].value;
+        modifiedPrice = parseFloat(modifiedPrice).toFixed(2);
       }
     });
-
+    //Maybe make a separate method for updating the actual live price
     this.setState({
       currentPrice: modifiedPrice
     });
