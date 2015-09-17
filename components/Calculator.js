@@ -24,61 +24,81 @@ module.exports = React.createClass({
       titleBgColor: 'green',
       fcdata: [],
       inputdata: [],
-      currentPrice: 0
+      initialPrice: 0,
+      currentPrice: 0,
+      currentTotalPrice: 0,
+      addOnTotal: 0,
+      priceModifier: 0,
+      calculatorType: 'default'
     };
   },
-  calculatePrice: function(inputValue){
+  calculateSF: function(price, length, width){
     //this method should take in input value(s)
     //Is this a linear or square foot calculation?
     //Do we need to access the price hidden input or do we
     //grab the price from the dropdown that is currently set
   },
+  calculateLF: function(price, length){
+    //This method with calculate linear foot price on fixed height/width products
+
+  },
+  calculateAddOns: function(price, qty, addon){
+    //This method will recalculate the addons once they have been added.
+    //once this calculation takes place return the additional amount to be added
+    //to the overall total price for calculation
+    //Is it a one time price
+    //Is it perimeter based?
+  },
   getInputVal: function(e){
     //Typecast input (string) into an integer
     var inputVal = parseInt(e.target.value);
     console.log(typeof inputVal);
+    console.log(e.target.name);
+
     //check if it is a number and that it is able to be rounded
+    //remove validation to a mixin of validation tools
     if((typeof inputVal == "number") && Math.floor(inputVal) === inputVal){
       //this function shouldn't update the currentPrice explicitly but run an external method that
       //calcs and sets the price
-      this.setState({
-        currentPrice: inputVal * this.state.currentPrice
-      })
     } else {
-      console.log('not a number do something now');
+      //incorrect value
     }
   },
-  updatePrice: function(e){
-    var modifiedPrice;
-    var selectOptions = e.target.options;
-    //loop over the options and see if they modify the price
-    //We need to change the price but start from the initial modifier that was set from the
-    //drop down or else use the hidden price value from the FCInput Data
+  getSelectedOption: function(e){
+      var options = e.target.options;
+      if(options[options.selectedIndex].attributes['data-price']) {
 
-    _.map(selectOptions, function(option, index){
-      if(option.selected && option.attributes['data-price']){
-        modifiedPrice = option.attributes['data-price'].value;
-        modifiedPrice = parseFloat(modifiedPrice).toFixed(2);
+        var selectedPrice = options[options.selectedIndex].attributes['data-price'].value;
+
+      } else {
+        var selectedPrice = this.state.currentPrice;
       }
-    });
-    //Maybe make a separate method for updating the actual live price
-    this.setState({
-      currentPrice: modifiedPrice
-    });
 
-    console.log('updated', e.target.value, 'the target itself', e.target.options);
-    console.info(e.target);
+     return selectedPrice;
+  },
+  setCalcType: function(){
+    //map over the inputs in the form and determine if SF/LF/Default
+
+  },
+  setNewPrice: function(e){
+    var selectedPrice = this.getSelectedOption(e);
+    console.log(this.state.initialPrice);
+    this.setState({
+      currentPrice: selectedPrice
+    });
   },
   loadDataFile: function(){
     var dataFile = this.props.dataFile + '.json';
     $.get('../data/'+dataFile, function(data){
         console.log(data);
+        var initialPrice = _.result(_.findWhere(data.fcdata, { FCProd: 'price' }), 'FCVal');
         if(this.isMounted()){
           this.setState({
             fcdata: data.fcdata,
             calcTitle: data.calcdata.calcTitle,
             titleBgColor: data.calcdata.titleBgColor,
-            inputdata: data.inputdata
+            inputdata: data.inputdata,
+            initialPrice: initialPrice
           });
         }
     }.bind(this));
@@ -88,8 +108,9 @@ module.exports = React.createClass({
     // Load the data file that is passed in
     // by the calculator file in the main App.js
     this.loadDataFile();
+    //Figure out what kind of calculator type we have (SF/LF/Default)
+    this.setCalcType();
   },
-
   render: function(){
     var styles = React.addons.classSet;
     var classes = styles({
@@ -100,8 +121,9 @@ module.exports = React.createClass({
         <form className={classes} name="calculator" method="post">
           <h3 style={titleStyle}>{this.state.calcTitle}</h3>
           <FCList data={this.state.fcdata} />
-          <InputList inputVal={this.getInputVal}
-                     update={this.updatePrice}
+          <InputList select={this.getSelectedOption}
+                     inputVal={this.getInputVal}
+                     update={this.setNewPrice}
                      currentPrice={this.state.currentPrice}
                      data={this.state.inputdata} />
           <Button />
@@ -115,6 +137,6 @@ module.exports = React.createClass({
 var trim = function() {
   var TRIM_RE = /^\s+|\s+$/g;
   return function trim(string) {
-    return string.replace(TRIM_RE, '')
+    return string.replace(TRIM_RE, '');
   }
 }();

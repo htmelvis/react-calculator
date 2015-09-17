@@ -36,7 +36,8 @@
       "defaultOption": "Choose Net Width",
       "options": [
         {"optionVal": "162 Inches Wide", "price": 6.99},
-        {"optionVal": "81 Inches Wide", "price": 4.53}
+        {"optionVal": "81 Inches Wide", "price": 4.53},
+        {"optionVal": "Test Modifier", "price": 1.83, "modifier": "true"}
       ]
     },
     {

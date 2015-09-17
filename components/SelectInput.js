@@ -1,5 +1,4 @@
 var React = require('react');
-//var SpecialOption = require('./SpecialOption');
 module.exports = React.createClass({
     getInitialState: function(){
       return {
@@ -10,7 +9,7 @@ module.exports = React.createClass({
     buildSelectOptions: function(){
       var values = this.props.data.options;
       return values.map(function(value, index){
-        return <option data-price={value.price} value={value.optionVal} key={index}>{value.optionVal}</option>
+        return <option data-price={value.price} value={value.optionVal} key={index} data-mod={value.modifier}>{value.optionVal}</option>
       });
     },
     render: function(){

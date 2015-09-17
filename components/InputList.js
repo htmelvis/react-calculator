@@ -10,24 +10,21 @@ var SecureInput = require('./SecureInput');
 //This will house the pieces of the calculator and also let it be
 module.exports = React.createClass({
   render: function() {
-      var updatePrice = this.props.update;
+      var setNewPrice = this.props.update;
       var getInputVal = this.props.inputVal;
-     //TODO: Set a price value that trickles down into the options so we
-    //Can receive the elements back at this level.
       return (
           <div>
           {this.props.data.map(function (input, index) {
           if (input.inputType === 'input') {
             return <SecureInput update={getInputVal} label={input.label} key={index} type="text" name={input.name} />
           } else if (input.inputType === 'select') {
-            return <SelectInput prodPrice={input.options[0].price}
-                                update={updatePrice}
-                                label={input.label}
+            return <SelectInput label={input.label}
                                 key={index}
                                 name={input.name}
-                                data={input} />
-          }
-          })
+                                data={input}
+                                update={setNewPrice} />
+             }
+            })
           }
           </div>
     );
