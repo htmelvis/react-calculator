@@ -51,14 +51,13 @@ module.exports = React.createClass({
   },
   getInputVal: function(e){
     //Typecast input (string) into an integer
-    var inputVal = parseInt(e.target.value);
-    console.log(typeof inputVal);
-    console.log(e.target.name);
 
+    var inputVal = parseInt(e.target.value);
     //check if it is a number and that it is able to be rounded
     //remove validation to a mixin of validation tools
     if((typeof inputVal == "number") && Math.floor(inputVal) === inputVal){
       //this function shouldn't update the currentPrice explicitly but run an external method that
+
       //calcs and sets the price
     } else {
       //incorrect value
@@ -66,7 +65,8 @@ module.exports = React.createClass({
   },
   getSelectedOption: function(e){
       var options = e.target.options;
-      if(options[options.selectedIndex].attributes['data-price']) {
+      var attrs = options[options.selectedIndex].attributes;
+      if(attrs['data-price']) {
 
         var selectedPrice = options[options.selectedIndex].attributes['data-price'].value;
 
@@ -78,11 +78,13 @@ module.exports = React.createClass({
   },
   setCalcType: function(){
     //map over the inputs in the form and determine if SF/LF/Default
+    var calc = React.findDOMNode(this);
+    console.log(this.refs.f)
 
   },
   setNewPrice: function(e){
     var selectedPrice = this.getSelectedOption(e);
-    console.log(this.state.initialPrice);
+
     this.setState({
       currentPrice: selectedPrice
     });
@@ -90,7 +92,6 @@ module.exports = React.createClass({
   loadDataFile: function(){
     var dataFile = this.props.dataFile + '.json';
     $.get('../data/'+dataFile, function(data){
-        console.log(data);
         var initialPrice = _.result(_.findWhere(data.fcdata, { FCProd: 'price' }), 'FCVal');
         if(this.isMounted()){
           this.setState({

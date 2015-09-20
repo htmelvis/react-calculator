@@ -16,7 +16,7 @@ module.exports = React.createClass({
           <div>
           {this.props.data.map(function (input, index) {
           if (input.inputType === 'input') {
-            return <SecureInput update={getInputVal} label={input.label} key={index} type="text" name={input.name} />
+            return <SecureInput update={getInputVal} label={input.label} ref={input.name} key={index} type="text" name={input.name} />
           } else if (input.inputType === 'select') {
             return <SelectInput label={input.label}
                                 key={index}
