@@ -29,7 +29,9 @@ module.exports = React.createClass({
       currentTotalPrice: 0,
       addOnTotal: 0,
       priceModifier: 0,
-      calculatorType: 'default'
+      calculatorType: 'default',
+      plength: false,
+      pwidth: false
     };
   },
   calculateSF: function(price, length, width){
@@ -53,6 +55,7 @@ module.exports = React.createClass({
     //Typecast input (string) into an integer
 
     var inputVal = parseInt(e.target.value);
+
     //check if it is a number and that it is able to be rounded
     //remove validation to a mixin of validation tools
     if((typeof inputVal == "number") && Math.floor(inputVal) === inputVal){
@@ -73,18 +76,24 @@ module.exports = React.createClass({
       } else {
         var selectedPrice = this.state.currentPrice;
       }
-
      return selectedPrice;
   },
-  setCalcType: function(){
-    //map over the inputs in the form and determine if SF/LF/Default
-    var calc = React.findDOMNode(this);
-    console.log(this.refs.f)
+  setCalcType: function(inputs){
+    console.log(inputs);
+    console.log('Set Calculator Type now Running');
+    if(inputs == 'Length'){
+      this.setState({plength: true});
+    }
+    if(inputs == 'Width'){
+      this.setState({pwidth: true});
+    }
 
+    console.log(this.state.calculatorType);
+    console.log(this.state.plength);
+    console.log(this.state.pwidth);
   },
   setNewPrice: function(e){
     var selectedPrice = this.getSelectedOption(e);
-
     this.setState({
       currentPrice: selectedPrice
     });
@@ -126,14 +135,19 @@ module.exports = React.createClass({
                      inputVal={this.getInputVal}
                      update={this.setNewPrice}
                      currentPrice={this.state.currentPrice}
-                     data={this.state.inputdata} />
+                     data={this.state.inputdata}
+                     calcType={this.setCalcType} />
+
+          <div className="form-group">
+            <label>Qty: </label>
+            <input type="text" className="calc-input" name="quantity" />
+          </div>
           <Button />
-          <LivePrice refs="currentPriceBox" price={this.state.currentPrice} />
+          <LivePrice ref="currentPriceBox" price={this.state.currentPrice} />
         </form>
     );
   }
 });
-
 // Utility to trim inputs
 var trim = function() {
   var TRIM_RE = /^\s+|\s+$/g;

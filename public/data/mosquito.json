@@ -44,6 +44,11 @@
       "inputType": "input",
       "label": "Length",
       "name": "Length"
+    },
+    {
+      "inputType": "input",
+      "label": "Width",
+      "name": "Width"
     }
   ]
 }

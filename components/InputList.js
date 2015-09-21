@@ -12,11 +12,12 @@ module.exports = React.createClass({
   render: function() {
       var setNewPrice = this.props.update;
       var getInputVal = this.props.inputVal;
+      var setType = this.props.calcType;
       return (
           <div>
           {this.props.data.map(function (input, index) {
           if (input.inputType === 'input') {
-            return <SecureInput update={getInputVal} label={input.label} ref={input.name} key={index} type="text" name={input.name} />
+            return <SecureInput update={getInputVal} calcType={setType} label={input.label} key={index} type="text" name={input.name} />
           } else if (input.inputType === 'select') {
             return <SelectInput label={input.label}
                                 key={index}
